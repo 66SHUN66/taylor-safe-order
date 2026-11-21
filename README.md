@@ -5,7 +5,7 @@
 Automatic order selection for Taylor expansions that is **as accurate as the
 floating-point format allows** and **never overflows** on the way there.
 
-Zero third-party dependencies. Pure `math` + `dataclasses`.
+Zero third-party dependencies. Pure `math` + `dataclasses`. Python 3.10+.
 
 ```python
 from taylor_auto import scan, evaluate_scaled, exp_terms
@@ -201,7 +201,7 @@ taylor_overflow.py   argument reduction, e^x / sin, failure modes
 make_figure.py       regenerates docs/error_vs_order.svg from the modules above
 docs/                the figure in the section above
 tests/test_accuracy.py
-.github/workflows/   CI: the suite on Python 3.9 - 3.13
+.github/workflows/   CI: the suite on Python 3.10 - 3.13
 ```
 
 Run everything:
