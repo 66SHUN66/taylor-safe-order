@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taylor-safe-order"
+version = "0.1.0"
+description = "Automatic Taylor order selection that balances truncation against rounding error and never overflows double precision"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["taylor-series", "floating-point", "numerical-analysis", "overflow", "asymptotic-expansion"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[tool.setuptools]
+py-modules = ["scaled_sum", "taylor_order", "taylor_auto", "taylor_overflow"]
