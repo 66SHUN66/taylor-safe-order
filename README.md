@@ -1,5 +1,7 @@
 # taylor-safe-order
 
+[![tests](https://github.com/66SHUN66/taylor-safe-order/actions/workflows/tests.yml/badge.svg)](https://github.com/66SHUN66/taylor-safe-order/actions/workflows/tests.yml)
+
 Automatic order selection for Taylor expansions that is **as accurate as the
 floating-point format allows** and **never overflows** on the way there.
 
@@ -38,6 +40,8 @@ convergent one it lands on the point where the term drops below half an ulp of
 the sum. Nothing here is a heuristic — `est` is a bound for alternating series
 (Leibniz) and a geometric-tail estimate otherwise, and the repo's tests show
 the detected `n*` coinciding with the brute-force argmin.
+
+![Error versus the number of terms](docs/error_vs_order.svg)
 
 ## Three failure modes, three tools
 
@@ -194,7 +198,10 @@ scaled_sum.py        overflow-proof accumulator
 taylor_order.py      closed-form order bounds (theorem + numerical checks)
 taylor_auto.py       order detector + safe evaluators
 taylor_overflow.py   argument reduction, e^x / sin, failure modes
+make_figure.py       regenerates docs/error_vs_order.svg from the modules above
+docs/                the figure in the section above
 tests/test_accuracy.py
+.github/workflows/   CI: the suite on Python 3.9 - 3.13
 ```
 
 Run everything:
@@ -204,6 +211,7 @@ python taylor_auto.py          # detector demo
 python taylor_order.py         # theorem verification tables
 python taylor_overflow.py      # reduction vs naive Taylor
 python tests\test_accuracy.py  # assertions (also pytest-compatible)
+python make_figure.py          # rebuild the README figure
 ```
 
 ## License
