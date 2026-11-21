@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Assertion suite (13 checks)
+        run: python tests/test_accuracy.py
+
+      - name: Demo smoke run
+        run: |
+          python taylor_auto.py     > /dev/null
+          python taylor_overflow.py > /dev/null
+          python taylor_order.py    > /dev/null
+
+      - name: Figure is reproducible
+        run: |
+          python make_figure.py
+          git diff --exit-code docs/error_vs_order.svg
